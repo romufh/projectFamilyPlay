@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buttons Example</title>
   <link rel="stylesheet" href="style2.css">
 </head>
+
 <body>
-  
+
   <div class="btn-container">
-    <button class="custom-btn culture">
-      <img src="https://img.icons8.com/color/48/book.png" alt="ثقافة">
+    <button class="custom-btn culture" onclick="goToGame('culture')">
+      <img src="https://img.icons8.com/color/48/book.png">
       <span>ثقافة</span>
     </button>
 
-    <button class="custom-btn history">
-      <img src="https://img.icons8.com/color/48/scroll.png" alt="تاريخ">
+    <button class="custom-btn history" onclick="goToGame('history')">
+      <img src="https://img.icons8.com/color/48/scroll.png">
       <span>تاريخ</span>
     </button>
 
-    <button class="custom-btn religion">
-      <img src="https://img.icons8.com/color/48/mosque.png" alt="دين">
+    <button class="custom-btn religion" onclick="goToGame('religion')">
+      <img src="https://img.icons8.com/color/48/mosque.png">
       <span>دين</span>
     </button>
+
+    <script>
+      function goToGame(category) {
+        window.location.href = `index.html?cat=${category}`;
+      }
+    </script>
+
   </div>
 
 </body>
+
 </html>
+
+
