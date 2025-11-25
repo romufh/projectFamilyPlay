@@ -37,13 +37,13 @@ body {
   margin-bottom: 8px;
 }
 
-/* تأثير عند المرور */
+
 .custom-btn:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
 
-/* ألوان مختلفة لكل زر */
+
 .culture {
   background: linear-gradient(135deg, #FF9800, #F57C00);
 }
@@ -55,3 +55,5 @@ body {
 .religion {
   background: linear-gradient(135deg, #3F51B5, #303F9F);
 }
+
+
