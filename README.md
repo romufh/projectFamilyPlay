@@ -21,13 +21,36 @@ Suitable for all ages — encourages family interaction and quick thinking.
 
 ⚙️ Main Files:
 
-index.html → Contains the main structure and game elements.
+Q.html → This is the first file executed when opening the game.
+It manages the category selection for questions (Culture, History, Religion) and links the player to the main game board (index.html) according to the chosen section.
 
-style.css → Handles design and layout of squares and buttons.
+index.html → Contains the main structure of the game: the grid of squares, the title, popups for results, and buttons for restarting the game.
 
-main.js → Controls the game logic and win conditions based on correct answers.
+style.css → Handles design and layout for the game board, squares, popups, and buttons. Ensures responsive and visually appealing appearance for the main game.
 
-timer.js → Manages the countdown and reset functions.
+main.js → Controls the core game logic:
+
+Assigns letters to squares randomly.
+
+Displays the question based on the selected letter and category.
+
+Tracks player clicks, colors, and determines the winner.
+
+Handles restarting the game and interaction with the timer.
+
+timer.js → Manages the countdown timer:
+
+Starts and resets the one-minute countdown.
+
+Updates the display in real-time.
+
+Shows a message when the time is over.
+
+style2.css → Contains styling for Q.html , including:
+
+Buttons for selecting question categories.
+
+Visual enhancements separate from the main game board.
 
 🚀 Project Goal:
 
