@@ -15,7 +15,7 @@
   Provides a visual countdown for game rounds and question timing.
 
 📦 Related Files:
-  - index.html → Timer display & start button.
+  - game.html → Timer display & start button.
   - main.js    → Game logic integration.
 
 🧠 Developer Notes:
@@ -81,4 +81,5 @@ startBtn.addEventListener("click", startTimer);
  🖥️ Initial Display
 ------------------------------------------------------------- */
 updateDisplay(timeLeft);
+
 
