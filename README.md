@@ -21,10 +21,10 @@ Suitable for all ages — encourages family interaction and quick thinking.
 
 ⚙️ Main Files:
 
-Q.html → This is the first file executed when opening the game.
+index.html → This is the first file executed when opening the game.
 It manages the category selection for questions (Culture, History, Religion) and links the player to the main game board (index.html) according to the chosen section.
 
-index.html → Contains the main structure of the game: the grid of squares, the title, popups for results, and buttons for restarting the game.
+game.html → Contains the main structure of the game: the grid of squares, the title, popups for results, and buttons for restarting the game.
 
 style.css → Handles design and layout for the game board, squares, popups, and buttons. Ensures responsive and visually appealing appearance for the main game.
 
