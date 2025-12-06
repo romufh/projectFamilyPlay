@@ -18,7 +18,7 @@
   mixing fun, colors, and knowledge questions.
 
 📦 Related Files:
-  - index.html → Game UI.
+  - game.html → Game UI.
   - style.css  → Layout and pop-up styling.
   - timer.js   → Timer logic.
 
@@ -337,6 +337,7 @@ document.querySelector(".religion").addEventListener("click", () => {
   currentCategory = "religion";
   restartGame();
 });
+
 
 
 
