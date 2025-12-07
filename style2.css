@@ -1,59 +1,117 @@
 body {
-  font-family: 'Cairo', sans-serif;
+font-family: "Handjet", sans-serif;  
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #f7f7f7;
+  background: linear-gradient(135deg, #fff7f0, #ffe4b5);
+
 }
 
 .btn-container {
   display: flex;
-  gap: 20px;
+  gap: 25px;
+  flex-wrap: wrap;
 }
 
+
 .custom-btn {
+  font-family: "Handjet", sans-serif;  
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 130px;
 
   border: none;
-  border-radius: 15px;
-  font-size: 18px;
+  border-radius: 20px;
+  font-size: 50px;
   font-weight: bold;
   cursor: pointer;
 
   color: #fff;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2), inset 0 2px 5px rgba(255,255,255,0.3);
 }
 
 .custom-btn img {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 8px;
+
+  width: 45px;
+  height: 45px;
+  margin-bottom: 10px;
 }
 
 
 .custom-btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3), inset 0 2px 5px rgba(255,255,255,0.4);
+}
+
+
+.custom-btn:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 3px 7px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.2);
 }
 
 
 .culture {
-  background: linear-gradient(135deg, #FF9800, #F57C00);
+  background: linear-gradient(135deg, #FFD54F, #FFC107);
 }
 
 .history {
-  background: linear-gradient(135deg, #4CAF50, #388E3C);
+  background: linear-gradient(135deg, #FFCA28, #FFB300);
 }
 
 .religion {
-  background: linear-gradient(135deg, #3F51B5, #303F9F);
+  background: linear-gradient(135deg, #FFB300, #FFA000);
+}
+
+.git {
+  background: linear-gradient(135deg, #FFEB3B, #FBC02D);
+}
+
+.custom-btn {
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s ease;
 }
 
 
+.custom-btn:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+
+.custom-btn::after {
+  content: "";
+  position: absolute;
+
+ 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+
+  width: 0;
+  height: 0;
+
+  border-left: 30px solid white;       
+  border-top: 22px solid transparent;
+  border-bottom: 22px solid transparent;
+
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+
+.custom-btn:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+
+  
+  filter: drop-shadow(0 0 6px rgba(0,0,0,0.4));
+}

@@ -28,6 +28,7 @@
  🖱️ DOM Elements
 ------------------------------------------------------------- */
 const startBtn = document.getElementById("startTimerBtn");
+const stopBtn = document.getElementById("stopTimerBtn");
 const display = document.getElementById("timerDisplay");
 
 
@@ -45,6 +46,7 @@ function updateDisplay(seconds) {
   const min = Math.floor(seconds / 60).toString().padStart(2, '0');
   const sec = (seconds % 60).toString().padStart(2, '0');
   display.innerText = `${min}:${sec}`;
+  console.log(`${min}:${sec}`);
 }
 
 
@@ -58,28 +60,75 @@ function startTimer() {
   timeLeft = 60;            // Reset time
   updateDisplay(timeLeft);  // Initial display
 
+  
   timerInterval = setInterval(() => {
     timeLeft--;
     updateDisplay(timeLeft);
 
+   if (timeLeft === 50) {
+      console.log("لقد مرت 10 ثوانٍ ⏳");
+    }
+
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
       display.innerText = "انتهى الوقت ⏰";
-      // Optional: Trigger any action when timer ends
+    console.log("Timer finish");
     }
   }, 1000);
+
+  
+  
 }
+
+
+/* ⏹️ Stop Timer */
+function stopTimer() {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    console.log("Timer stopped at:", display.innerText);
+  }
+}
+
 
 
 /* ------------------------------------------------------------
  🔗 Event Binding
 ------------------------------------------------------------- */
 startBtn.addEventListener("click", startTimer);
-
+stopBtn.addEventListener("click", stopTimer);
 
 /* ------------------------------------------------------------
  🖥️ Initial Display
 ------------------------------------------------------------- */
 updateDisplay(timeLeft);
 
+/* ------------------------------------------------------------
+ 🧪 Internal Test Method
+------------------------------------------------------------- */
+function testTimer() {
+  console.log("=== Timer Test Started ===");
+
+  // Simulate button click
+  startTimer();
+
+  // Check after 3 seconds
+  setTimeout(() => {
+    console.log("After 3 seconds, timer shows:", display.innerText);
+  }, 3000);
+
+  // Check after 5 seconds
+  setTimeout(() => {
+    console.log("After 5 seconds, timer shows:", display.innerText);
+  }, 5000);
+
+  // Check end of timer (61 sec)
+  setTimeout(() => {
+    console.log("Expected end message:", display.innerText);
+    console.log("=== Timer Test Finished ===");
+  }, 61000);
+}
+
+// Export the test function for internal use
+window.testTimer = testTimer;
 

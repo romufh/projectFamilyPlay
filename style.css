@@ -1,31 +1,157 @@
-.game{
-  width:75%;
+body {
+  margin: 0;
+  padding: 0;
+font-family: "Handjet", sans-serif; 
+  background: no-repeat center center fixed,
+              linear-gradient(135deg, #fff7da, #ffe8a3);
+
+  background-size: cover;
+
+  
+  backdrop-filter: blur(2px);
+}
+
+
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+
+  background: none; 
+  color: #ffca28;     
+  border: none;
+  padding: 18px 28px;  
+  font-size: 26px;     
+
+  font-family: "Handjet", sans-serif;
+  font-weight: 700;
+
+  transition: 0.3s ease;
+}
+
+
+
+
+
+
+.game {
+  width: 75%;
   text-align: center;
   margin: auto;
+  padding: 25px;
+  border-radius: 25px;
+
+
+
 }
-.title{
-  background-color: rgb(251, 187, 49);
-  padding: 5px 0;
-  margin: 5px 0;
-  font-size: 40px;
+
+.char1, .char2 {
+  position: fixed;
+  z-index: -1;
+  opacity: 0.25;
+  animation: float 6s ease-in-out infinite;
+}
+
+.char1 {
+  width: 180px;
+  top: 15%;
+  left: 5%;
+}
+
+.char2 {
+  width: 220px;
+  bottom: 10%;
+  right: 5%;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.title {
+  background: linear-gradient(135deg, #ffcf5f, #ffb739);
+  padding: 15px 0;
+  margin-bottom: 100px ;
+
+  font-size: 38px;
+
+  width: 90%;
+  color: #4a3200;
+  font-weight: bold;
+
+  border-radius: 18px;
+
+  
+  border: 3px solid rgba(255,255,255,0.6);
+  backdrop-filter: blur(3px);
+
+  
+  box-shadow: 
+      0 6px 15px rgba(0,0,0,0.25),
+      inset 0 2px 4px rgba(255,255,255,0.7);
+
+  text-align: center;
+
+  
+  animation: popIn 0.4s ease-out;
+  transition: 0.3s;
 }
 
 
-.square{
+.title:hover {
+  background: linear-gradient(135deg, #ffe7a8, #ffc65e);
+  transform: translateY(-3px);
+  box-shadow:
+      0 8px 20px rgba(0,0,0,0.3),
+      inset 0 2px 5px rgba(255,255,255,0.8);
+}
 
+
+@keyframes popIn {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+
+.square {
   width: 30%;
   height: 25%;
   float: left;
   margin: 2px;
   font-size: 50px;
   border: 2px solid rgb(11, 11, 11);
-  border-radius: 10px; 
+  border-radius: 12px;
 
+  
+  box-shadow: 
+      4px 4px 10px rgba(0,0,0,0.3),   /* Shadow bottom-right */
+      -4px -4px 10px rgba(255,255,255,0.8); /* Light top-left */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.25s ease;
+  cursor: pointer;
 }
 
-.square:hover{
-background-color: rgb(252, 236, 195);
+.square:hover {
+
+  
+  box-shadow: 
+      6px 6px 15px rgba(0,0,0,0.35),
+      -4px -4px 12px rgba(255,255,255,0.85);
 }
+
+.square:active {
+ 
+  transform: translateY(2px);
+  box-shadow: 
+      2px 2px 5px rgba(0,0,0,0.2),
+      -2px -2px 5px rgba(255,255,255,0.6);
+}
+
 
    .result-box {
 
@@ -48,17 +174,83 @@ background-color: rgb(252, 236, 195);
       cursor: pointer;
     }
 
-    .timer{
-      margin-top: 400px;
-      padding: 12px;
-      background-color: rgb(251, 187, 49);
-      width: 100px;
-      text-align: center;
-      align-items: center;
-      margin-left: 40%;
-      border: none;
-      border-radius: 50px;
-    }
+
+.timer {
+  margin: 40px auto;
+  padding: 18px;
+  width: 120px;
+
+  background: linear-gradient(135deg, #ffcf5f, #ffb739);
+  color: #4a3200;
+  font-size: 28px;
+  font-weight: bold;
+
+  text-align: center;
+
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.7);
+
+  box-shadow: 
+      0 6px 18px rgba(0, 0, 0, 0.25),
+      inset 0 3px 5px rgba(255,255,255,0.7);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  animation: popIn 0.4s ease-out;
+}
+
+
+
+.timer-buttons {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.timer-buttons button {
+  padding: 12px 25px;
+  margin: 5px;
+font-family: "Handjet", sans-serif;
+  background: linear-gradient(135deg, #ffdd80, #ffc44a);
+  color: #4a3200;
+  font-size: 18px;
+  font-weight: bold;
+
+  border: none;
+  border-radius: 12px;
+
+  box-shadow:
+      0 4px 10px rgba(0, 0, 0, 0.25),
+      inset 0 1px 3px rgba(255, 255, 255, 0.7);
+
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+
+.timer-buttons button:hover {
+  transform: translateY(-4px);
+  box-shadow:
+      0 6px 15px rgba(0,0,0,0.3),
+      inset 0 2px 4px rgba(255,255,255,0.9);
+}
+
+
+.timer-buttons button:active {
+  transform: translateY(2px);
+  box-shadow:
+      0 3px 7px rgba(0,0,0,0.2),
+      inset 0 1px 2px rgba(255,255,255,0.6);
+}
+
+
+
+@keyframes popIn {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 
 
     

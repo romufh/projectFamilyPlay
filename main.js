@@ -131,11 +131,7 @@ const questionSets = {
 };
 
 
-
-/* ------------------------------------------------------------
- 🧱 DOM Elements
-------------------------------------------------------------- */
-
+/* ---------------------- DOM Elements ---------------------- */
 const squares = Array.from(document.querySelectorAll(".square"));
 const urlParams = new URLSearchParams(window.location.search);
 let currentCategory = urlParams.get("cat") || "culture";
@@ -146,11 +142,7 @@ const resultText = document.getElementById("resultText");
 const restartBtn = resultBox ? resultBox.querySelector("button") : null;
 
 
-
-/* ------------------------------------------------------------
- 🥇 Winning Combinations
-------------------------------------------------------------- */
-
+/* ---------------------- Winning Combinations ---------------------- */
 const winningCombinations = [
   [0,1,2],[3,4,5],[6,7,8],
   [0,3,6],[1,4,7],[2,5,8],
@@ -158,15 +150,14 @@ const winningCombinations = [
 ];
 
 let gameOver = false;
-let clickTimers = new Map();
-let clickCounts = new Map();
 
 
+/* ---------------------- Sound Effects ---------------------- */
+const clickSound = new Audio("assest/sound/click.mp3");
+const winSound = new Audio("assest/sound/win.mp3");
 
-/* ------------------------------------------------------------
- 🔄 Utility: Shuffle Array
-------------------------------------------------------------- */
 
+/* ---------------------- Utility Functions ---------------------- */
 function shuffle(array) {
   const arr = array.slice();
   for (let i = arr.length - 1; i > 0; i--) {
@@ -175,12 +166,6 @@ function shuffle(array) {
   }
   return arr;
 }
-
-
-
-/* ------------------------------------------------------------
- 🔠 Fill Letters Randomly
-------------------------------------------------------------- */
 
 function fillLetters() {
   const letters = Object.keys(questionSets[currentCategory]);
@@ -191,16 +176,14 @@ function fillLetters() {
   }
 }
 
-
-
-/* ------------------------------------------------------------
- 🏆 Winner / Draw Detection
-------------------------------------------------------------- */
-
 function showResult(msg) {
   resultText.innerText = msg;
   resultBox.style.display = "block";
   gameOver = true;
+
+  if (msg.includes("Winner")) {
+    winSound.play().catch(err => console.log("Sound play error:", err));
+  }
 }
 
 function hideResult() {
@@ -232,22 +215,13 @@ function checkWinner() {
 }
 
 
-
-/* ------------------------------------------------------------
- 🔁 Restart Game
-------------------------------------------------------------- */
-
+/* ---------------------- Restart Game ---------------------- */
 function restartGame() {
   gameOver = false;
   hideResult();
   title.innerText = "سؤال";
 
-  clickCounts.clear();
-
-  squares.forEach(sq => {
-    sq.style.backgroundColor = "";
-  });
-
+  squares.forEach(sq => sq.style.backgroundColor = "");
   fillLetters();
 }
 
@@ -258,59 +232,60 @@ if (restartBtn) {
 }
 
 
-
-/* ------------------------------------------------------------
- 🖱️ Click Logic (1=Question, 2=Orange, 3=Blue)
-------------------------------------------------------------- */
-
+/* ---------------------- Square Click Logic ---------------------- */
 function attachSquareHandlers() {
   squares.forEach((square, idx) => {
-    clickCounts.set(idx, 0);
-
     square.addEventListener("click", () => {
       if (gameOver) return;
       if (square.style.backgroundColor) return;
 
-      let count = (clickCounts.get(idx) || 0) + 1;
-      clickCounts.set(idx, count);
+      const letter = square.innerText;
+      title.innerText = questionSets[currentCategory][letter] || "No question available";
 
-      if (clickTimers.has(idx)) {
-        clearTimeout(clickTimers.get(idx));
+      // 🔊 صوت النقر عند الضغط على المربع
+      clickSound.play().catch(err => console.log("Sound play error:", err));
+
+      if (square.querySelector("div")) return;
+
+      const colorBox = document.createElement("div");
+      colorBox.style.display = "flex";
+      colorBox.style.gap = "10px";
+      colorBox.style.marginTop = "5px";
+
+      const orangeBtn = document.createElement("button");
+      orangeBtn.innerText = "برتقالي";
+      orangeBtn.style.backgroundColor = "orange";
+      orangeBtn.style.color = "white";
+      orangeBtn.style.border = "none";
+      orangeBtn.style.padding = "5px 10px";
+      orangeBtn.style.cursor = "pointer";
+
+      const blueBtn = document.createElement("button");
+      blueBtn.innerText = "أزرق";
+      blueBtn.style.backgroundColor = "blue";
+      blueBtn.style.color = "white";
+      blueBtn.style.border = "none";
+      blueBtn.style.padding = "5px 10px";
+      blueBtn.style.cursor = "pointer";
+
+      colorBox.appendChild(orangeBtn);
+      colorBox.appendChild(blueBtn);
+      square.appendChild(colorBox);
+
+      function chooseColor(color) {
+        square.style.backgroundColor = color;
+        checkWinner();
+        colorBox.remove();
       }
 
-      const timer = setTimeout(() => {
-
-        if (count === 1) {
-          const letter = square.innerText;
-          title.innerText = questionSets[currentCategory][letter] || "No question available";
-        }
-
-        else if (count === 2) {
-          square.style.backgroundColor = "orange";
-          checkWinner();
-        }
-
-        else if (count >= 3) {
-          square.style.backgroundColor = "blue";
-          checkWinner();
-        }
-
-        clickCounts.set(idx, 0);
-        clickTimers.delete(idx);
-
-      }, 300);
-
-      clickTimers.set(idx, timer);
+      orangeBtn.addEventListener("click", () => chooseColor("orange"));
+      blueBtn.addEventListener("click", () => chooseColor("blue"));
     });
   });
 }
 
 
-
-/* ------------------------------------------------------------
- 🚀 Init Game
-------------------------------------------------------------- */
-
+/* ---------------------- Init Game ---------------------- */
 (function init() {
   fillLetters();
   attachSquareHandlers();
@@ -318,11 +293,7 @@ function attachSquareHandlers() {
 })();
 
 
-
-/* ------------------------------------------------------------
- 🔗 Category Switching Buttons
-------------------------------------------------------------- */
-
+/* ---------------------- Category Buttons ---------------------- */
 document.querySelector(".culture").addEventListener("click", () => {
   currentCategory = "culture";
   restartGame();
@@ -337,20 +308,3 @@ document.querySelector(".religion").addEventListener("click", () => {
   currentCategory = "religion";
   restartGame();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

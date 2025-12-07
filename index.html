@@ -5,10 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buttons Example</title>
+  
   <link rel="stylesheet" href="style2.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
+  <div class="logo-container">
+    <img class="logo" src="assest/logo.png" alt="Game Logo" style="height:750px;">
+  </div>
 
   <div class="btn-container">
     <button class="custom-btn culture" onclick="goToGame('culture')">
@@ -28,7 +36,7 @@
 
     <script>
       function goToGame(category) {
-        window.location.href = `game.html?cat=${category}`;
+window.location.href = `game.html?cat=${category}`;
       }
     </script>
 
@@ -37,6 +45,5 @@
 </body>
 
 </html>
-
 
 

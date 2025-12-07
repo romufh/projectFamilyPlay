@@ -7,9 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
+  
+  
+
+<a class="back-btn" onclick="window.location.href='index.html'">⬅ الرئيسية</a>
+
+
   <div class="game">
     <div class="title">سوال</div>
     <div class="square" id="item1"></div>
@@ -29,18 +39,22 @@
 
   <div class="popup" id="resultBox">
     <p id="resultText"></p>
+    <div><img src="assest/golden trophy cup in pixel art style.jpg" alt="Golden Trophy" class="trophy-image" style="width: 100px; height: 100px;">
+</div>
     <button onclick="restartGame()"> إعادة اللعب</button>
+    <button onclick="window.location.href='index.html'"> العودة للصفحة الرئيسية </button>
   </div>
 
 
 
 
-  <div class="timer">
-    <div id="timerContainer" style="margin-top: 20px;">
-      <button id="startTimerBtn">⏱️ بدء التايمر</button>
-      <div id="timerDisplay" style="font-size: 24px; margin-top: 10px;">01:00</div>
-    </div>
-  </div>
+    <div id="timerDisplay" class="timer">01:00</div>
+
+<div class="timer-buttons">
+  <button id="startTimerBtn">⏱️ بدء التايمر</button>
+  <button id="stopTimerBtn">⏱️ إيقاف التايمر</button>
+</div>
+
 
   <script src="main.js"></script>
   <script src="timer.js"></script>
